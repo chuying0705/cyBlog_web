@@ -49,7 +49,7 @@
                     {{item.likeCount}}
                   </span>
                   </div>
-                  <el-button type="text" class="button">查看详情></el-button>
+                  <el-button type="text" class="button" @click="toArticleDetail">查看详情></el-button>
                 </div>
               </div>
             </el-card>
@@ -140,6 +140,13 @@ export default {
       //   this.count += 2
       //   this.loading = false
       // }, 2000)
+    },
+    toArticleDetail () {
+      // this.$router.push('/detail')
+      let routeUrl = this.$router.resolve({
+        path: '/detail'
+      })
+      window.open(routeUrl.href, '_blank')
     }
   }
 }

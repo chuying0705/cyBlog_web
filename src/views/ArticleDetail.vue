@@ -1,10 +1,17 @@
 <template>
   <div class="detail-container">
-    <div class="header-wrap">
+    <div class="wrap">
+      <div class="mask">
+        <h1>储学长的一亩三分地</h1>
+        <!--<h5>--储学长</h5>-->
+      </div>
       <Header></Header>
     </div>
-    <div class="content-container">
-      <div class="content-wrap">
+    <!--<div class="header-wrap">-->
+      <!--<Header></Header>-->
+    <!--</div>-->
+    <div class="content-container" id="articleDetail">
+      <div class="content-wrap" >
         <div class="title-box">
           <h1>{{article.title}}</h1>
           <div class="desc-wrap">
@@ -245,6 +252,8 @@ export default {
   computed: {
   },
   mounted () {
+    // this.scroll()
+    document.getElementById('articleDetail').scrollIntoView()
     marked.setOptions({
       highlight: function (code) {
         return hljs.highlightAuto(code).value
@@ -253,6 +262,16 @@ export default {
     this.content = marked(this.article.content)
   },
   methods: {
+    scroll () {
+      var anchor = document.querySelector('#articleDetail')
+      // console.log(anchor,anchor.offsetTop);
+      var top = anchor.offsetTop - 60
+      document.body.scrollTop = top
+      // Firefox
+      document.documentElement.scrollTop = top
+      // Safari
+      window.pageYOffset = top
+    },
     load () {
     },
     showInput (i) {
@@ -290,13 +309,37 @@ export default {
   .detail-container{
     background-color: #f9f9f9;
     position: relative;
-    .header-wrap{
+    .wrap{
       width: 100%;
-      height: 60px;
-      /*background-color: #333;*/
-      position: fixed;
-      top: 0;
+      height: 400px;
+      background-image: url(~@/assets/img/blog_bg.jpg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      .mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white !important;
+        h1{
+          font-size: 60px;
+        }
+      }
     }
+    /*.header-wrap{*/
+      /*width: 100%;*/
+      /*height: 60px;*/
+      /*!*background-color: #333;*!*/
+      /*position: fixed;*/
+      /*top: 0;*/
+    /*}*/
     .content-container{
       width: 880px;
       margin: 0px auto;
