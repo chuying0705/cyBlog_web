@@ -20,6 +20,11 @@ export default new Router({
       path: '/detail',
       name: 'detail',
       component: () => import(/* webpackChunkName: "artical" */ './views/ArticleDetail.vue')
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
   ]
 })
